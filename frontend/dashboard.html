@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="Index.html">Home</a>
+        <a href="booking.html">Book Covid Bed Slot</a>
+        <a href="index.html" id="Admin">Logout</a>
+    </nav>
+
+    <div id="messageBox" class="message-box"></div>
+
+    <div class="container">
+        <h1>Welcome to Your Dashboard</h1>
+        <p>Hello, <span id="username"></span>!</p>
+
+        <!-- Booking Button -->
+        <button id="bookSlotBtn" class="btn">Book a Bed Slot</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('username');
+            document.getElementById('username').textContent = username || 'User';
+
+            // Redirect to booking page when clicking the button
+            document.getElementById('bookSlotBtn').addEventListener('click', () => {
+                window.location.href = 'booking.html';
+            });
+
+            // Logout functionality
+            document.getElementById('logout').addEventListener('click', () => {
+                localStorage.clear();
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Manage Slots</a>
+        <a href="#">Settings</a>
+    </nav>
+    <div id="messageBox" class="message-box"></div>
+
+    
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+
+        <h3>Add Bed Slot</h3>
+        <form id="addSlotForm">
+            <input type="text" id="slotNumber" placeholder="Enter Slot Number">
+            <button type="submit" id="addSlotBtn">Add Slot</button>
+        </form>
+
+        <h3>Covid Bed Slots</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Slot Number</th>
+                    <th>Status</th>
+                    <th>Booked By</th>
+                </tr>
+            </thead>
+            <tbody id="slotsTable"></tbody>
+        </table>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
