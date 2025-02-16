@@ -1,5 +1,3 @@
-const API_BASE_URL = "http://parking-system-production.up.railway.app"; // ✅ Updated Backend URL
-
 document.addEventListener("DOMContentLoaded", () => {
     const loginSection = document.getElementById("loginSection");
     const registerSection = document.getElementById("registerSection");
@@ -41,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("loginPassword").value.trim();
 
             try {
-                const response = await fetch(`${API_BASE_URL}/login`, {
+                const response = await fetch("http://localhost:3000/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password })
@@ -71,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("adminPassword").value.trim();
 
             try {
-                const response = await fetch(`${API_BASE_URL}/admin/login`, {
+                const response = await fetch("http://localhost:3000/admin/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password })
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("registerPassword").value.trim();
 
             try {
-                const response = await fetch(`${API_BASE_URL}/register`, {
+                const response = await fetch("http://localhost:3000/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ username, password })
@@ -134,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/slots`, {
+                const response = await fetch("http://localhost:3000/api/slots", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

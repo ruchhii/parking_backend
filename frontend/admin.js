@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_BASE_URL = "http://parking-system-production.up.railway.app"; // ✅ Updated Backend URL
-
     fetchSlots();
 
     document.getElementById("addSlotForm").addEventListener("submit", async (event) => {
@@ -19,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/slots`, {
+            const response = await fetch("http://localhost:3000/api/slots", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -46,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function fetchSlots() {
     try {
-        const response = await fetch("http://parking-system-production.up.railway.app/api/slots");
+        const response = await fetch("http://localhost:3000/api/slots");
         const slots = await response.json();
 
         const tableBody = document.getElementById("slotsTable");
