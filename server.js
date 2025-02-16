@@ -106,12 +106,20 @@ app.post("/api/slots", verifyAdmin, (req, res) => {
     db.query("INSERT INTO parking_slots (slot_number, is_available) VALUES (?, TRUE)", [slot_number], (err, result) => {
         if (err) {
             console.error("❌ Error adding slot:", err);
-            return res.status(500).json({ success: false, message: "⚠️ Error adding slot." });
+
+            // Check if the error comes from MySQL trigger
+            if (err.code === "ER_SIGNAL_EXCEPTION") {  
+                return res.status(400).json({ success: false, message: "⚠️ Slot number already exists!" });
+            }
+
+            return res.status(500).json({ success: false, message: "⚠️ Slot number already exists!" });
         }
 
         res.status(201).json({ success: true, message: "✅ Slot added successfully!" });
     });
 });
+
+
 
 // ✅ GET ALL PARKING SLOTS
 app.get("/api/slots", (req, res) => {
@@ -132,7 +140,7 @@ function authenticateUser(req, res, next) {
 
     jwt.verify(token, "secret", (err, decoded) => {
         if (err) {
-            return res.status(403).json({ success: false, message: "✅ Booking Successful!" }); // Fake success message
+            return res.status(403).json({ success: false, message: "⚠️ Invalid token" });
         }
         req.user_id = decoded.id;
         next();
@@ -190,5 +198,5 @@ app.delete("/api/bookings/:id", authenticateUser, (req, res) => {
 });
 
 // ✅ START SERVER
-const PORT = 4000;
+const PORT = 8080;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

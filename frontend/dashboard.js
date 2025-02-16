@@ -1,9 +1,11 @@
+const API_BASE_URL = "http://parking-system-production.up.railway.app"; // ✅ Updated Backend URL
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchAvailableSlots();
 });
 
 function fetchAvailableSlots() {
-    fetch('http://localhost:3000/api/slots')
+    fetch(`${API_BASE_URL}/api/slots`)
         .then(response => response.json())
         .then(slots => {
             const availableSlots = document.getElementById('availableSlots');
@@ -23,7 +25,7 @@ function fetchAvailableSlots() {
 function bookSlot(slotId) {
     const userId = localStorage.getItem('user_id');
 
-    fetch('http://localhost:3000/api/book', {
+    fetch(`${API_BASE_URL}/api/book`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: userId, slot_id: slotId })
